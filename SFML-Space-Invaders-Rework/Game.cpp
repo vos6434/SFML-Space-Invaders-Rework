@@ -15,12 +15,12 @@ Game::Game()
 	m_Player->setTexture(*m_PlayerTexture);
 
 
-	m_Alien = new Alien();
+	//m_Alien = new Alien();
 	//m_Alien->setPosition(Vector2f(500, 100));
 
 	m_AlienTexture = new Texture();
 	m_AlienTexture->loadFromFile("alien1.png");
-	m_Alien->setTexture(*m_AlienTexture);
+	//m_Alien->setTexture(*m_AlienTexture);
 
 	//m_Bullet = new Bullet();
 	m_BulletTexture = new Texture();
@@ -28,6 +28,7 @@ Game::Game()
 	//m_BulletTexture->setTexture(*m_BulletTexture);
 
 	//SpawnBullet(Vector2f(500, 500)); Spawns a bullet at the start of the game
+	SpawnAlienGrid(5, 5, 100, 100, 80); // Adjust parameters as needed
 
 }
 
@@ -97,9 +98,18 @@ void Game::Input()
 void Game::Update(float dt_)
 {
 	m_Player->Update(dt_);
+	/*
 	if (m_Alien != nullptr)
 	{
 		m_Alien->Update(dt_);
+	}
+	*/
+	for (auto& alien : m_AlienList)
+	{
+		if (alien)
+		{
+			alien->Update(dt_);
+		}
 	}
 
 	for (auto& bullet : m_BulletList)
@@ -116,9 +126,18 @@ void Game::Draw()
 {
 	m_Window.clear();
 	m_Window.draw(*m_Player);
+	/*
 	if (m_Alien)
 	{
 		m_Window.draw(*m_Alien);
+	}
+	*/
+	for (auto& alien : m_AlienList)
+	{
+		if (alien)
+		{
+			m_Window.draw(*alien);
+		}
 	}
 	
 	for (auto& bullet : m_BulletList)
@@ -131,6 +150,27 @@ void Game::Draw()
 
 	m_Window.display();
 
+}
+
+void Game::SpawnAlienGrid(int rows, int columns, float startX, float startY, float spacing)
+{
+	for (int row = 0; row < rows; ++row)
+	{
+		for (int col = 0; col < columns; ++col)
+		{
+			Alien* newAlien = new Alien();
+			newAlien->setTexture(*m_AlienTexture);
+
+			float x = startX + col * spacing;
+			float y = startY + row * spacing;
+
+			newAlien->setPosition(Vector2f(x, y));
+
+			// Add the new alien to a vector or array to keep track of them
+			// For example: vector<Alien*> m_AlienList;
+			m_AlienList.push_back(newAlien);
+		}
+	}
 }
 
 void Game::SpawnBullet(const Vector2f _position)
@@ -146,14 +186,17 @@ void Game::CheckCollisions()
 	// Check to see if any bullets are colliding with aliens
 	for (auto&bullet : m_BulletList)
 	{
-		if (m_Alien && bullet)
+		for (auto&alien : m_AlienList)
 		{
-			if (bullet->getGlobalBounds().intersects(m_Alien->getGlobalBounds()))
+			if (alien && bullet)
 			{
-				delete m_Alien;
-				m_Alien = nullptr;
-				delete bullet;
-				bullet = nullptr;
+				if (bullet->getGlobalBounds().intersects(alien->getGlobalBounds()))
+				{
+					delete alien;
+					alien = nullptr;
+					delete bullet;
+					bullet = nullptr;
+				}
 			}
 		}
 	}

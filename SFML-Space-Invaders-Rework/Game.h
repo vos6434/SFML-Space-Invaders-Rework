@@ -11,7 +11,8 @@ private: //Member variables, all forward delcared
 		class Player* m_Player;
 		class Texture* m_PlayerTexture;
 
-		class Alien* m_Alien;
+		//class Alien* m_Alien;
+		vector<class Alien*> m_AlienList;
 		class Texture* m_AlienTexture;
 
 		//class Bullet* m_Bullet;
@@ -30,6 +31,7 @@ private:
 	void Input();
 	void Update(float dt_);
 	void Draw();
+	void SpawnAlienGrid(int rows, int columns, float startX, float startY, float spacing);
 	void SpawnBullet(const Vector2f _position);
 	void CheckCollisions();
 };

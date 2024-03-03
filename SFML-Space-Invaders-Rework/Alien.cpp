@@ -39,5 +39,6 @@ void Alien::CheckDirection()
 
 void Alien::MoveDown()
 {
+	// move the alien down by 100
 	setPosition(getPosition().x, getPosition().y + 100);
 }

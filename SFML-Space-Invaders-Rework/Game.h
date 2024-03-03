@@ -33,6 +33,7 @@ private: //Member variables, all forward delcared
 		void UpdateScoreText();
 
 		bool m_GameWon;
+		bool m_GameOver;
 
 public:
 	Game();

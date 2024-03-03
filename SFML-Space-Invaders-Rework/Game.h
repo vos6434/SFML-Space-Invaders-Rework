@@ -32,6 +32,8 @@ private: //Member variables, all forward delcared
 
 		void UpdateScoreText();
 
+		bool m_GameWon;
+
 public:
 	Game();
 	void Start();

@@ -7,6 +7,8 @@ Game::Game()
 {
 	m_Window.create(VideoMode(1000, 1000), "Space Invaders");
 
+	m_GameWon = false;
+
 	m_Player = new Player();
 	m_Player->setPosition(Vector2f(500, 800));
 
@@ -143,32 +145,38 @@ void Game::Update(float dt_)
 void Game::Draw()
 {
 	m_Window.clear();
-	m_Window.draw(m_ScoreText);
-	m_Window.draw(*m_Player);
-	/*
-	if (m_Alien)
+
+	if (m_GameWon)
 	{
-		m_Window.draw(*m_Alien);
+		// Display "Game Win" message
+		sf::Text gameWinText("Game Win!", m_Font, 36);
+		gameWinText.setFillColor(sf::Color::Green);
+		gameWinText.setPosition(400.f, 400.f); // Adjust position as needed
+		m_Window.draw(gameWinText);
 	}
-	*/
-	for (auto& alien : m_AlienList)
+	else
 	{
-		if (alien)
+		m_Window.draw(m_ScoreText);
+		m_Window.draw(*m_Player);
+
+		for (auto& alien : m_AlienList)
 		{
-			m_Window.draw(*alien);
+			if (alien)
+			{
+				m_Window.draw(*alien);
+			}
 		}
-	}
-	
-	for (auto& bullet : m_BulletList)
-	{
-		if (bullet)
+
+		for (auto& bullet : m_BulletList)
 		{
-			m_Window.draw(*bullet);
+			if (bullet)
+			{
+				m_Window.draw(*bullet);
+			}
 		}
 	}
 
 	m_Window.display();
-
 }
 
 void Game::SpawnAlienGrid(int rows, int columns, float startX, float startY, float spacing)
@@ -225,6 +233,12 @@ void Game::CheckCollisions()
 
 	auto eraseStart = remove(begin(m_BulletList), end(m_BulletList), nullptr);
 	m_BulletList.erase(eraseStart, end(m_BulletList));
+
+	if (m_Score >= 35)
+	{
+		m_GameWon = true;
+	}
+
 }
 
 void Game::GameOver()

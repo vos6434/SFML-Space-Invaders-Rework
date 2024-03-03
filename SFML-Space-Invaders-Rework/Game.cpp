@@ -28,7 +28,20 @@ Game::Game()
 	//m_BulletTexture->setTexture(*m_BulletTexture);
 
 	//SpawnBullet(Vector2f(500, 500)); Spawns a bullet at the start of the game
-	SpawnAlienGrid(5, 5, 100, 100, 80); // Adjust parameters as needed
+	SpawnAlienGrid(5, 7, 100, 100, 80); // Adjust parameters as needed
+
+	m_Score = 0;
+
+	if (!m_Font.loadFromFile("arial.ttf")) // Replace "arial.ttf" with the path to your font file
+	{
+		m_Window.close(); // close window if found is not found
+	}
+
+	m_ScoreText.setFont(m_Font);
+	m_ScoreText.setCharacterSize(24);
+	m_ScoreText.setFillColor(sf::Color::White);
+	m_ScoreText.setPosition(10.f, 10.f); // Adjust position as needed
+	UpdateScoreText();
 
 }
 
@@ -130,6 +143,7 @@ void Game::Update(float dt_)
 void Game::Draw()
 {
 	m_Window.clear();
+	m_Window.draw(m_ScoreText);
 	m_Window.draw(*m_Player);
 	/*
 	if (m_Alien)
@@ -201,6 +215,9 @@ void Game::CheckCollisions()
 					alien = nullptr;
 					delete bullet;
 					bullet = nullptr;
+
+					m_Score++; // Increase the score when an alien is hit
+					UpdateScoreText(); //Update score text
 				}
 			}
 		}
@@ -213,5 +230,10 @@ void Game::CheckCollisions()
 void Game::GameOver()
 {
 	m_Window.close(); // Close the game window (or perform other game over actions)
+}
+
+void Game::UpdateScoreText()
+{
+	m_ScoreText.setString("Score: " + std::to_string(m_Score));
 }
 

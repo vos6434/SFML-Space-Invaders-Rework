@@ -26,6 +26,12 @@ private: //Member variables, all forward delcared
 		float m_LoseHeight = 800.0f;
 		void GameOver();
 
+		int m_Score;
+		Font m_Font;
+		Text m_ScoreText;
+
+		void UpdateScoreText();
+
 public:
 	Game();
 	void Start();

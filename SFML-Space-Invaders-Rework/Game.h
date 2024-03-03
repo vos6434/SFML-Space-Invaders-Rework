@@ -23,6 +23,9 @@ private: //Member variables, all forward delcared
 
 		bool m_HasShot = false;
 
+		float m_LoseHeight = 800.0f;
+		void GameOver();
+
 public:
 	Game();
 	void Start();

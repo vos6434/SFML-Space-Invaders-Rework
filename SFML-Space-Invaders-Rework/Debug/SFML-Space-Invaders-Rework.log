@@ -1,7 +1,2 @@
 ﻿  Game.cpp
-  main.cpp
-  Generating Code...
-  LINK : C:\Users\kacpe\Documents\University\pure c++\space invaders\space invaders rework\GitHub\SFML-Space-Invaders-Rework\Debug\SFML-Space-Invaders-Rework.exe not found or not built by the last incremental link; performing full link
-Player.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'Player.obj' or at 'C:\Users\kacpe\Documents\University\pure c++\space invaders\space invaders rework\GitHub\SFML-Space-Invaders-Rework\Debug\vc141.pdb'; linking object as if no debug info
-Alien.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'Alien.obj' or at 'C:\Users\kacpe\Documents\University\pure c++\space invaders\space invaders rework\GitHub\SFML-Space-Invaders-Rework\Debug\vc141.pdb'; linking object as if no debug info
   SFML-Space-Invaders-Rework.vcxproj -> C:\Users\kacpe\Documents\University\pure c++\space invaders\space invaders rework\GitHub\SFML-Space-Invaders-Rework\Debug\SFML-Space-Invaders-Rework.exe

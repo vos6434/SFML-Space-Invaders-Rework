@@ -8,7 +8,7 @@ Game::Game()
 	m_Window.create(VideoMode(1000, 1000), "Space Invaders");
 
 	m_Player = new Player();
-	m_Player->setPosition(Vector2f(500, 750));
+	m_Player->setPosition(Vector2f(500, 800));
 
 	m_PlayerTexture = new Texture();
 	m_PlayerTexture->loadFromFile("mbase.png");
@@ -109,6 +109,11 @@ void Game::Update(float dt_)
 		if (alien)
 		{
 			alien->Update(dt_);
+
+			if (alien->getPosition().y >= m_LoseHeight)
+			{
+				GameOver();
+			}
 		}
 	}
 
@@ -203,5 +208,10 @@ void Game::CheckCollisions()
 
 	auto eraseStart = remove(begin(m_BulletList), end(m_BulletList), nullptr);
 	m_BulletList.erase(eraseStart, end(m_BulletList));
+}
+
+void Game::GameOver()
+{
+	m_Window.close(); // Close the game window (or perform other game over actions)
 }
 

@@ -205,14 +205,3 @@ void Game::CheckCollisions()
 	m_BulletList.erase(eraseStart, end(m_BulletList));
 }
 
-void Game::MoveAliensDown()
-{
-	for (auto& alien : m_AlienList)
-	{
-		if (alien)
-		{
-			alien->MoveDown();
-		}
-	}
-}
-

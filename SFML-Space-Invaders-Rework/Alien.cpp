@@ -24,7 +24,7 @@ void Alien::CheckDirection()
 	if (getGlobalBounds().left <= 0) //if our left side is at the left side of the screen
 	{
 		m_isGoingRight = true; //go right
-		MoveDown(); // Move down when reaching the edge
+		MoveDown();
 		return;
 	}
 
@@ -33,11 +33,11 @@ void Alien::CheckDirection()
 	if (rightSide >= 1000) //if our right side is at the right side of the screen
 	{
 		m_isGoingRight = false; //go left
-		MoveDown(); // Move down when reaching the edge
+		MoveDown();
 	}
 }
 
 void Alien::MoveDown()
 {
-	setPosition(getPosition() + sf::Vector2f(0.0f, 100.0f));
+	setPosition(getPosition().x, getPosition().y + 100);
 }

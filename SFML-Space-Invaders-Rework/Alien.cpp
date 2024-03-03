@@ -1,5 +1,7 @@
 #include "Alien.h"
 
+bool m_isGoingRight = true;
+
 void Alien::Update(const float _deltaTime)
 {
 	CheckDirection();
@@ -37,5 +39,5 @@ void Alien::CheckDirection()
 
 void Alien::MoveDown()
 {
-	setPosition(getPosition() + sf::Vector2f(0.0f, 50.0f));
+	setPosition(getPosition() + sf::Vector2f(0.0f, 100.0f));
 }

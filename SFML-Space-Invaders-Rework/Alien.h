@@ -6,7 +6,6 @@ using namespace sf;
 class Alien : public Sprite
 {
 	private:
-		bool m_isGoingRight = true;
 		float speed = 200.0f;
 
 	public:

@@ -12,6 +12,8 @@ class Alien : public Sprite
 	public:
 		void Update(const float _deltaTime);
 
+		void MoveDown();
+
 		void Move(const float _deltaTime);
 
 		void CheckDirection();

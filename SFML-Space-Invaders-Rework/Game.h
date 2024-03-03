@@ -34,5 +34,6 @@ private:
 	void SpawnAlienGrid(int rows, int columns, float startX, float startY, float spacing);
 	void SpawnBullet(const Vector2f _position);
 	void CheckCollisions();
+	void MoveAliensDown();
 };
 

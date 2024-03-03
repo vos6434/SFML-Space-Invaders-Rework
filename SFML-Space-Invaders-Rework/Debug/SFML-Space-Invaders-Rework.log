@@ -1,2 +1,13 @@
-﻿  Game.cpp
-  SFML-Space-Invaders-Rework.vcxproj -> C:\Users\kacpe\Documents\University\pure c++\space invaders\space invaders rework\SFML-Space-Invaders-Rework\Debug\SFML-Space-Invaders-Rework.exe
+﻿  Alien.cpp
+  Bullet.cpp
+  Game.cpp
+  main.cpp
+  Player.cpp
+c:\users\kacpe\documents\university\pure c++\space invaders\space invaders rework\github\sfml-space-invaders-rework\sfml-space-invaders-rework\player.cpp(10): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  SFML-Space-Invaders-Rework.cpp
+  Generating Code...
+  SFML-Space-Invaders-Rework.vcxproj -> C:\Users\kacpe\Documents\University\pure c++\space invaders\space invaders rework\GitHub\SFML-Space-Invaders-Rework\Debug\SFML-Space-Invaders-Rework.exe

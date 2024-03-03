@@ -28,7 +28,7 @@ Game::Game()
 	//m_BulletTexture->setTexture(*m_BulletTexture);
 
 	//SpawnBullet(Vector2f(500, 500)); Spawns a bullet at the start of the game
-	SpawnAlienGrid(5, 8, 100, 100, 80); // Rows, Columns, X pos, Y pos, Spacing
+	SpawnAlienGrid(5, 5, 100, 100, 80); // Adjust parameters as needed
 
 }
 
@@ -57,7 +57,6 @@ void Game::Start()
 		Draw();
 		Input();
 		CheckCollisions();
-		CheckPlayerCollision();
 
 	}
 }
@@ -204,20 +203,5 @@ void Game::CheckCollisions()
 
 	auto eraseStart = remove(begin(m_BulletList), end(m_BulletList), nullptr);
 	m_BulletList.erase(eraseStart, end(m_BulletList));
-}
-
-void Game::CheckPlayerCollision()
-{
-	for (auto& alien : m_AlienList)
-	{
-		if (alien && m_Player)
-		{
-			if (m_Player->getGlobalBounds().intersects(alien->getGlobalBounds()))
-			{
-				// Player and alien collided - Game over logic here
-				m_Window.close(); // Close the window or implement game over screen
-			}
-		}
-	}
 }
 
